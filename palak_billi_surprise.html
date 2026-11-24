@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palak • Billi Special</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;
+    font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#713b59;
+    background:radial-gradient(circle at top,#fff7fb,#ffe3ef 55%,#f8d7e8)}
+  .card{width:min(100%,440px);padding:30px 24px;border:1px solid #ffffffb8;
+    border-radius:28px;background:#ffffffd9;box-shadow:0 18px 55px #b65d8730;
+    text-align:center;position:relative;overflow:hidden}
+  .paws{font-size:28px;letter-spacing:10px;opacity:.8}
+  h1{font-size:clamp(34px,9vw,48px);margin:12px 0 6px;color:#c04e83}
+  .sub{font-size:16px;line-height:1.6;margin:8px auto 22px;max-width:310px}
+  .cat{font-size:76px;display:block;animation:bob 2s ease-in-out infinite}
+  button{border:0;border-radius:999px;padding:14px 23px;background:#d95d91;color:white;
+    font-weight:700;font-size:16px;box-shadow:0 7px 18px #d95d9145;cursor:pointer}
+  button:active{transform:scale(.97)}
+  #message{display:none;margin:22px 0 0;padding:18px;border-radius:18px;background:#fff0f6;
+    line-height:1.8;animation:pop .45s ease both}
+  #message strong{color:#c04e83;font-size:20px}
+  .tiny{font-size:12px;color:#a36b87;margin-top:20px}
+  .float{position:absolute;font-size:20px;animation:rise 5s linear infinite;opacity:0;pointer-events:none}
+  @keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
+  @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+  @keyframes rise{0%{transform:translateY(40px);opacity:0}20%{opacity:.7}100%{transform:translateY(-520px);opacity:0}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="paws">🐾 🐾 🐾</div>
+  <span class="cat" aria-hidden="true">🐱</span>
+  <h1>Hey, Palak!</h1>
+  <p class="sub">Tumhare liye ek chhota sa surprise hai…<br>Ready ho, Billi? 😸</p>
+  <button id="open" type="button">Surprise kholo ✨</button>
+  <section id="message" aria-live="polite">
+    <strong>Special message for Billi 💗</strong><br>
+    Tumhari smile ekdum sunshine jaisi hai! ☀️<br>
+    Hamesha khush rehna, mast rehna aur aise hi cute si shararatein karti rehna. 🌷
+    <br><br>— Tumhara dost 😄
+  </section>
+  <p class="tiny">Made with a little fun & lots of good vibes 🌸</p>
+</main>
+<script>
+  const btn=document.getElementById('open');
+  const msg=document.getElementById('message');
+  btn.addEventListener('click',()=>{
+    msg.style.display='block';
+    btn.textContent='Surprise mil gaya! 💖';
+    btn.disabled=true;
+    for(let i=0;i<12;i++){
+      const s=document.createElement('span');
+      s.className='float';
+      s.textContent=['💗','🌸','✨','🐾'][i%4];
+      s.style.left=(5+Math.random()*90)+'%';
+      s.style.bottom='-20px';
+      s.style.animationDelay=(Math.random()*1.5)+'s';
+      document.querySelector('.card').appendChild(s);
+      setTimeout(()=>s.remove(),5500);
+    }
+  });
+</script>
+</body>
+</html>
